@@ -1,0 +1,30 @@
+
+body{
+    background: #1B2A41;
+    background: linear-gradient(358deg, rgba(27, 42, 65, 1) 0%, rgba(30, 86, 160, 1) 69%, rgba(76, 161, 217, 1) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+
+}
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7%;
+}
+
+.container-box{
+    background-color: #08162C;
+    border-radius: 4px;
+
+}
+
+
+
+h2,p,span{
+    color: #fff;
+}
+
