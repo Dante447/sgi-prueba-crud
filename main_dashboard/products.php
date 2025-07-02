@@ -77,130 +77,20 @@ $proveedores = $stmtProv->fetchAll();
     <link rel="stylesheet" href="css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
-<<<<<<< HEAD
 	<link rel="stylesheet" href="css/separate/main.css">
-=======
-	<link rel="stylesheet" href="./css/separate/main.css">
->>>>>>> 57036154d68e4abf32d9c45647ce16e2f409918f
-
-</head>
+s</head>
 
 
 <body class="with-side-menu theme-side-madison-caribbean">
 
 
 	<!---------------         SIDE HEADER              --------------------------->
-<<<<<<< HEAD
 	<?php include_once __DIR__ . '/partials/header.php'; ?>
-=======
-
-	<header class="site-header">
-	    <div class="container-fluid">
-				<a href="" class="site-logo">
-					<img class="hidden-lg-up">
-					<img class="hidden-md-down">
-				</a>
-	        <button class="hamburger hamburger--htla">
-	            <span>toggle menu</span>
-	        </button>
-	        <div class="site-header-content">
-	            <div class="site-header-content-in">
-	                <div class="site-header-shown">
-	                    <div class="dropdown dropdown-notification notif">
-	                        <a href="#"
-	                        	class="header-alarm dropdown-toggle active"
-	                        	id="dd-notification"
-								aria-haspopup="true"
-								data-toggle="dropdown"
-	                        	aria-expanded="false">
-	                        	<i class="font-icon-alarm"></i>
-	                        </a>
-
-							
-
-	                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-notif" aria-labelledby="dd-notification">
-	                            <div class="dropdown-menu-notif-header">
-	                                Notificaciones
-	                                <span class="label label-pill label-danger">4</span>
-	                            </div>
-	                            <div class="dropdown-menu-notif-list">
-	                                <div class="dropdown-menu-notif-item">
-	                                    <div class="photo">
-	                                        <img src="img/photo-64-1.jpg" alt="">
-	                                    </div>
-	                                    <div class="dot"></div>
-	                                    <a href="#">Morgan</a> was bothering about something
-	                                    <div class="color-blue-grey-lighter">7 hours ago</div>
-	                                </div>
-	                                <div class="dropdown-menu-notif-item">
-	                                    <div class="photo">
-	                                        <img src="img/photo-64-2.jpg" alt="">
-	                                    </div>
-	                                    <div class="dot"></div>
-	                                    <a href="#">Lioneli</a> had commented on this <a href="#">Super Important Thing</a>
-	                                    <div class="color-blue-grey-lighter">7 hours ago</div>
-	                                </div>
-	                                <div class="dropdown-menu-notif-item">
-	                                    <div class="photo">
-	                                        <img src="img/photo-64-3.jpg" alt="">
-	                                    </div>
-	                                    <div class="dot"></div>
-	                                    <a href="#">Xavier</a> had commented on the <a href="#">Movie title</a>
-	                                    <div class="color-blue-grey-lighter">7 hours ago</div>
-	                                </div>
-	                                <div class="dropdown-menu-notif-item">
-	                                    <div class="photo">
-	                                        <img src="img/photo-64-4.jpg" alt="">
-	                                    </div>
-	                                    <a href="#">Lionely</a> wants to go to <a href="#">Cinema</a> with you to see <a href="#">This Movie</a>
-	                                    <div class="color-blue-grey-lighter">7 hours ago</div>
-	                                </div>
-	                            </div>
-	                            <div class="dropdown-menu-notif-more">
-	                                <a href="#">Leer más</a>
-	                            </div>
-	                        </div>
-	                    </div>
-	
-	                    <div class="dropdown user-menu">
-	                        <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                            <img src="img/user.jpg" alt="">
-	                        </button>
-	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
-	                            <a class="dropdown-item" href="settings.html"><span class="font-icon glyphicon glyphicon-cog"></span>Configuración</a>
-	                            <a class="dropdown-item" href="help.html"><span class="font-icon glyphicon glyphicon-question-sign"></span>Help</a>
-	                            <div class="dropdown-divider"></div>
-	                            <a class="dropdown-item" href="../pages_login/pages-login.html"><span class="font-icon glyphicon glyphicon-log-out"></span>Salir</a>
-	                        </div>
-	                    </div>
-	
-	                </div><!--.site-header-shown-->
-
-					<div class="site-header-search-container">
-						<form class="site-header-search closed">
-							<input type="text" placeholder="Search"/>
-							<button type="submit">
-								<span class="font-icon-search"></span>
-							</button>
-							<div class="overlay"></div>
-						</form>
-					</div>
-	
-	                <div class="mobile-menu-right-overlay"></div>
-	                
-	                </div><!--.site-header-collapsed-->
-	            </div><!--site-header-content-in-->
-	        </div><!--.site-header-content-->
-	    </div><!--.container-fluid-->
-	</header>
-	
->>>>>>> 57036154d68e4abf32d9c45647ce16e2f409918f
 
 	<!---------------         SIDE HEADER              --------------------------->
 
 
 
-<<<<<<< HEAD
 	<!---------------         SIDE BAR              --------------------------->
 	<div class="mobile-menu-left-overlay"></div>
 	<nav class="side-menu">
@@ -212,20 +102,6 @@ $proveedores = $stmtProv->fetchAll();
 						<span class="lbl">Dashboard</span>
 					</a>
 				</li>
-=======
-
-		<!---------------         SIDE BAR              --------------------------->
-		<div class="mobile-menu-left-overlay"></div>
-		<nav class="side-menu">
-			<ul class="side-menu-list">
-	
-					<li class="grey with-sub">
-						<a href="dashnoard-principal.html">
-							<i class="font-icon font-icon-dashboard"></i>
-							<span class="lbl">Dashboard</span>
-						</a>
-					</li>
->>>>>>> 57036154d68e4abf32d9c45647ce16e2f409918f
 
 				<li class="magenta opened">
 					<a href="products.php">
@@ -233,8 +109,6 @@ $proveedores = $stmtProv->fetchAll();
 						<span class="lbl">Productos</span>
 					</a>
 				</li>
-
-<<<<<<< HEAD
 			<li class="">
 				<a href="reports.php">
 					<i class="font-icon font-icon-chart-2"></i>
@@ -270,46 +144,6 @@ $proveedores = $stmtProv->fetchAll();
 
 	</nav>
 	<!---------------         SIDE BAR              --------------------------->
-=======
-				<li class="">
-					<a href="reports.html">
-						<i class="font-icon font-icon-chart-2"></i>
-						<span class="lbl">Reportes</span>
-					</a>
-				</li>
-	
-	
-				<li class="">
-					<a href="calendar.html">
-						<i class="font-icon font-icon-calend"></i>
-						<span class="lbl">Calendario</span>
-					</a>
-				</li>
-	
-	
-				<li class="red">
-					<a href="mail.html">
-						<i class="font-icon glyphicon glyphicon-send"></i>
-						<span class="lbl">Correo</span>
-					</a>
-				</li>
-	
-	
-			</ul>
-
-
-			<a href="dashnoard-principal.html" class="site-logo">
-				<img class="hidden-md-down img-fluid" src="img/Logo.png" alt="">
-				<img class="hidden-lg-up img-fluid" src="img/Logo.png" alt="">
-			</a>
-		
-		</nav>
-
-		
-		<!---------------         SIDE BAR              --------------------------->
-
->>>>>>> 57036154d68e4abf32d9c45647ce16e2f409918f
-
 
 		<!---------------        PAGE CONTENT              --------------------------->
 
@@ -386,11 +220,8 @@ $proveedores = $stmtProv->fetchAll();
                                         <!----Modal editar--->
                                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
                                             <div class="modal-dialog">
-<<<<<<< HEAD
                                                 <form id="formEditarProducto" action="controllers/actualizar-modal-form.php" method="POST" class="modal-content">
-=======
                                                 <form id="formEditarProducto" action="actualizar-modal-form.php" method="POST" class="modal-content">
->>>>>>> 57036154d68e4abf32d9c45647ce16e2f409918f
                                                 <div class="modal-header">
                                                 <h5 class="modal-title">Editar Producto</h5>
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -440,11 +271,7 @@ $proveedores = $stmtProv->fetchAll();
                                         
                                         <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog">
                                             <div class="modal-dialog" role="document">
-<<<<<<< HEAD
                                                 <form id="formEliminar" action="controllers/eliminar-productos.php" method="GET" class="modal-content">
-=======
-                                                <form id="formEliminar" action="eliminar-productos.php" method="GET" class="modal-content">
->>>>>>> 57036154d68e4abf32d9c45647ce16e2f409918f
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Confirmar Eliminación</h5>
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -471,11 +298,7 @@ $proveedores = $stmtProv->fetchAll();
 
 <div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog">
   <div class="modal-dialog">
-<<<<<<< HEAD
     <form id="formAgregarProducto" action="controllers/crear-producto.php" method="POST" class="modal-content">
-=======
-    <form id="formAgregarProducto" action="crear-producto.php" method="POST" class="modal-content">
->>>>>>> 57036154d68e4abf32d9c45647ce16e2f409918f
       <div class="modal-header">
         <h5 class="modal-title">Agregar Producto</h5>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -559,11 +382,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('.btn-eliminar').click(function () {
         const id = $(this).data('id');
-<<<<<<< HEAD
         $('#delete-id').val(id); 
-=======
-        $('#delete-id').val(id); // ← ¡Este es el campo que se enviará!
->>>>>>> 57036154d68e4abf32d9c45647ce16e2f409918f
     });
 });
 </script>
