@@ -78,7 +78,11 @@ $proveedores = $stmtProv->fetchAll();
     <link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/separate/main.css">
-s</head>
+
+    <!-- React montado desde carpeta build -->
+<script defer src="react/static/js/main.8d89954c.js"></script>
+
+</head>
 
 
 <body class="with-side-menu theme-side-madison-caribbean">
@@ -165,56 +169,11 @@ s</head>
 				<button type="button" class="btn btn-success mb-3 glyphicon glyphicon-plus" data-toggle="modal" data-target="#modalAgregar"> Añadir producto
 </button>
 
+                    <div id="buscador-react"></div>
+                    <div id="tabla-react"></div>
+
 					<table id="tabla-productos" class="display table table-bordered" cellspacing="0" width="100%">
-						<thead>
-							<tr>
-								<th>Código</th>
-								<th>Nombre del Producto</th>
-								<th>Categoría</th>
-								<th>Cantidad en Stock</th>
-								<th>Precio Unitario</th>
-								<th>Proveedor</th>
-								<th>Acción</th>
-							</tr>
-						</thead>
-                        <tbody>
-                            <?php if ($error_message): ?>
-                                <tr>
-                                    <td colspan="8" class="text-center text-danger"><?php echo htmlspecialchars($error_message); ?></td>
-                                </tr>
-                            <?php elseif (empty($productos)): ?>
-                                <tr>
-                                    <td colspan="8" class="text-center">No hay productos para mostrar.</td>
-                                </tr>
-                            <?php else: ?>
-                                <?php foreach ($productos as $producto): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars('PRD' . str_pad($producto['id_producto'], 3, '0', STR_PAD_LEFT)); ?></td>
-                                    <td><?php echo htmlspecialchars($producto['nombre_producto']); ?></td>
-                                    <td><?php echo htmlspecialchars($producto['nombre_categoria'] ?? 'N/A'); ?></td>
-                                    <td><?php echo htmlspecialchars($producto['cantidad_disponible']); ?></td>
-                                    <td>$<?php echo htmlspecialchars(number_format($producto['precio_unitario'], 0, ',', '.')); ?></td>
-                                    <td><?php echo htmlspecialchars($producto['nombre_proveedor'] ?? 'N/A'); ?></td>
-                                    <td>
-                                        <div class="btn-group d-flex gap-1">
-                                            <button type="button"
-                                                class="btn btn-inline btn-primary d-flex btn-editar font-icon font-icon-pencil"
-                                                data-toggle="modal"
-                                                data-target="#myModal"
-                                                data-id="<?= $producto['id_producto']; ?>"
-                                                data-nombre="<?= htmlspecialchars($producto['nombre_producto']); ?>"
-                                                data-cantidad="<?= $producto['cantidad_disponible']; ?>"
-                                                data-precio="<?= $producto['precio_unitario']; ?>">
-												
-                                                Editar
-                                            </button>
-                                            <button type="button" 
-                                            class="btn btn-inline btn-danger btn-eliminar font-icon font-icon-trash" 
-                                            data-toggle="modal"  
-                                            data-target="#modalEliminar" 
-                                            data-id="<?php echo $producto['id_producto']; ?>">
-                                            Eliminar </button>
-                                        </div>
+
 
 
                                         <!----Modal editar--->
@@ -291,10 +250,10 @@ s</head>
                                         
                                         </td>
                                 </tr>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
                         </tbody>
 					</table>
+
+                                                            <!----Modal crear producto--->
 
 <div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog">
   <div class="modal-dialog">
@@ -386,6 +345,8 @@ $(document).ready(function () {
     });
 });
 </script>
+
+
 
 
 
