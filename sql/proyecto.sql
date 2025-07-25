@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2025 a las 20:50:37
+-- Tiempo de generación: 25-07-2025 a las 20:50:48
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -61,12 +61,10 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id_producto`, `nombre`, `cantidad_disponible`, `precio`, `id_proveedor`, `id_categoria`) VALUES
-(1, 'USB Kingston 64GB', 60, 30000.00, 5566, 1208),
-(2, 'Teclado Logitech', 15, 145000.00, 5566, 1208),
 (3, 'Laptop HP 14\"', 5, 2200000.00, 5567, 1209),
-(5, 'Audífonos Logitech G435', 20, 195000.00, 5566, 1208),
 (6, 'Mousepad HP Gaming XL', 40, 59000.00, 5567, 1210),
-(7, 'Teclado Logitech RP345', 30, 182000.00, 5566, 1208);
+(7, 'Teclado Logitech RP345', 30, 182000.00, 2001, 1209),
+(22, 'USB Kingston 64GB', 44, 23000.00, 2004, 1208);
 
 -- --------------------------------------------------------
 
@@ -133,10 +131,19 @@ CREATE TABLE `transacciones` (
 
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
-  `nombre` varchar(100) DEFAULT NULL,
-  `rol` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL
+  `nombres` varchar(100) NOT NULL,
+  `apellidos` varchar(100) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `nombres`, `apellidos`, `correo`, `password`) VALUES
+(1, 'Diego', 'Erazo', 'erazocardonad@gmail.com', '$2b$10$HLBDmU9Sf//Whl10Mc5o1uqQw6t3PGvr1u6X6bzeuW2sQej9R9KP2'),
+(3, 'Diego', 'Erazo', 'dante@gmail.com', '$2b$10$5AScFxsdlE0bUpE.hWLerue0gRDKdAA9U.FhL1Q4PLKrk2j4R/h.m');
 
 --
 -- Índices para tablas volcadas
@@ -182,7 +189,8 @@ ALTER TABLE `transacciones`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`);
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `correo` (`correo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -192,7 +200,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

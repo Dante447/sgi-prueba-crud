@@ -42,28 +42,24 @@
 		            <div class="mar-ver pad-btm">
 		                <h1 class="h3">Crear una nueva cuenta</h1>
 		            </div>
-		            <form action="pages-login.html">
+		            <form id="registroForm">
 		                <div class="row">
 		                    <div class="col-sm-6">
 		                        <div class="form-group">
-		                            <input type="text" class="form-control" placeholder="Nombres" name="names">
+		                            <input type="text" class="form-control" id="nombres" placeholder="Nombres" name="names">
 		                        </div>
 		                        <div class="form-group">
-		                            <input type="text" class="form-control" placeholder="Correo electrónico" name="email">
+		                            <input type="text" class="form-control" id="correo" placeholder="Correo electrónico" name="email">
 		                        </div>
 		                    </div>
 		                    <div class="col-sm-6">
 		                        <div class="form-group">
-		                            <input type="text" class="form-control" placeholder="Apellidos" name="username">
+		                            <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" name="username">
 		                        </div>
 		                        <div class="form-group">
-		                            <input type="password" class="form-control" placeholder="Contraseña" name="password">
+		                            <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password">
 		                        </div>
 		                    </div>
-		                </div>
-		                <div class="checkbox pad-btm text-left">
-		                    <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox">
-		                    <label for="demo-form-checkbox">Acepto los the <a href="#" class="btn-link text-bold">Terminos y Condiciones</a></label>
 		                </div>
 		                <button class="btn btn-primary btn-lg btn-block" type="submit">Registrar</button>
 		            </form>
@@ -96,6 +92,32 @@
     <script src="js\jquery.min.js"></script>
     <script src="js\bootstrap.min.js"></script>
     <script src="js\nifty.min.js"></script>
+<script>
+  document.getElementById("registroForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const nombres = document.getElementById("nombres").value;
+    const apellidos = document.getElementById("apellidos").value;
+    const correo = document.getElementById("correo").value;
+    const password = document.getElementById("password").value;
+
+    const response = await fetch("http://localhost:3000/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ nombres, apellidos, correo, password })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      alert("✅ Registro exitoso");
+      window.location.href = "pages-login.html";
+    } else {
+      alert("❌ Error: " + data.error);
+    }
+  });
+</script>
 
 
 </body>

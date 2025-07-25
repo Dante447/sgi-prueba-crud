@@ -43,7 +43,7 @@
 		<ul class="side-menu-list">
 
 				<li class="">
-					<a href="dashboard-principal.php">
+					<a href="index.php">
 						<i class="font-icon font-icon-dashboard"></i>
 						<span class="lbl">Dashboard</span>
 					</a>

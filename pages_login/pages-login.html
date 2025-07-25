@@ -20,16 +20,17 @@
 
             <!-------------------- ------ Right Box ---------------------------->
             
-            <div class="col-12">
+            <form id="loginForm" action="/login" method="POST" class="col-12">
+                <div class="col-12">
                 <div class="row align-items-center">
                     <div class="header-text mb-4">
                         <h2>Bienvenido/a</h2>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Correo electrónico">
+                        <input type="text" name="correo" id="correo" class="form-control form-control-lg bg-light fs-6" placeholder="Correo electrónico">
                     </div>
                     <div class="input-group mb-1">
-                        <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Contraseña">
+                        <input type="password" name="password" id="password" class="form-control form-control-lg bg-light fs-6" placeholder="Contraseña">
                     </div>
                     <div class="input-group mb-5 d-flex justify-content-between">
                         <div class="forgot">
@@ -37,11 +38,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-<<<<<<< HEAD
-                        <a class="btn btn-lg btn-primary w-100 fs-6" href="../main_dashboard/dashboard-principal.php"><button class="btn btn-lg btn-primary w-100 fs-6">Iniciar sesión</button></a>
-=======
-                        <a class="btn btn-lg btn-primary w-100 fs-6" href="../main_dashboard/dashnoard-principal.html"><button class="btn btn-lg btn-primary w-100 fs-6">Iniciar sesión</button></a>
->>>>>>> 57036154d68e4abf32d9c45647ce16e2f409918f
+                        <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">Iniciar sesión</button>
                     </div>
                     <div class="input-group mb-3">
                         <button class="btn btn-lg btn-light w-100 fs-6"><img src="img/google.png" style="width:20px" class="me-2"><small>Iniciar sesión con Google</small></button>
@@ -50,10 +47,46 @@
                         <small><span>¿No tienes cuenta? </span><a href="pages-register.html">Crear cuenta</a></small>
                     </div>
                 </div>
-            </div> 
+            </div>
+            </form>
+ 
 
         </div>
     </div>
+
+
+    <script>
+  document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault(); // Evita que el formulario recargue la página
+
+    const correo = document.getElementById("correo").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      const response = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ correo, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Login exitoso
+        alert("Inicio de sesión exitoso");
+        window.location.href = "../main_dashboard/index.php"; // Redirige al dashboard
+      } else {
+        // Error en login
+        alert(data.message || "Correo o contraseña incorrectos");
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+      alert("Hubo un error al conectar con el servidor.");
+    }
+  });
+</script>
 
 </body>
 </html>
