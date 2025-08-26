@@ -4595,6 +4595,7 @@ var.result-container {
     padding-right: 0;
   }
 }
+
 .control-panel .control-panel-container {
   position: fixed;
   right: 0;
@@ -4856,6 +4857,8 @@ var.result-container {
   padding-right: .9375rem;
   padding-left: .9375rem;
 }
+
+
 @media (min-width: 1500px) {
   .col-xxl-1,
   .col-xxl-2,

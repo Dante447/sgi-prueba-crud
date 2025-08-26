@@ -1522,6 +1522,8 @@ pre code {
 }
 
 @media (min-width: 1200px) {
+
+
   .col-xl-1 {
     float: left;
     width: 8.333333%;
@@ -1542,10 +1544,16 @@ pre code {
     float: left;
     width: 41.666667%;
   }
-  .col-xl-6 {
+      .col-xl-6 {
     float: left;
-    width: 50%;
+    width: 100%;
   }
+
+  .estadisticas{
+    margin-left: 14% ;
+    width: 75%;
+  }
+
   .col-xl-7 {
     float: left;
     width: 58.333333%;
@@ -1684,6 +1692,8 @@ pre code {
   .offset-xl-11 {
     margin-left: 91.666667%;
   }
+
+
 }
 
 .table {
@@ -6364,4 +6374,6 @@ a.text-danger:focus, a.text-danger:hover {
     display: none !important;
   }
 }
+
+
 /*# sourceMappingURL=bootstrap.css.map */
