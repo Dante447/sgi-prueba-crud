@@ -5133,8 +5133,9 @@ hr.margin-4 {
 .dropdown-toggle .caret {
   display: none;
 }
+
 /* ==========================================================================
-   Buttons
+Buttons
    ========================================================================== */
 .btn {
   -webkit-border-radius: 3px;
@@ -7337,9 +7338,15 @@ body.modal-open {
   -webkit-box-shadow: none;
           box-shadow: none;
   border: solid 1px #d8e2e7;
+  background-color: #fff ;
 }
 .modal-header {
   border-bottom-color: #d8e2e7;
+  background-color: #fff !important;
+}
+
+.modal-body{
+  background-color: #fff;
 }
 .modal-title {
   font-size: 1.125rem;

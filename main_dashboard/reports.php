@@ -1,3 +1,83 @@
+<?php
+	
+	
+session_start();
+
+include 'config/config.php';	
+
+$tipo = "Inventario";
+
+$fecha_inicio = $_GET['fecha_inicio'] ?? null;
+$fecha_fin = $_GET['fecha_fin'] ?? null;
+
+$total_productos = 0;
+$stock_bajo = 0;
+$valor_total = 0;
+
+$productos = [];
+
+if ($fecha_inicio && $fecha_fin) {
+
+    $sql = "SELECT p.*, c.nombre_categoria 
+            FROM productos p
+            LEFT JOIN categorias c 
+            ON p.id_categoria = c.id_categorias
+            WHERE DATE(p.fecha_registro) BETWEEN ? AND ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$fecha_inicio, $fecha_fin]);
+    $result = $stmt->fetchAll();
+	$productos = $result;
+	
+
+    foreach ($result as $row) {
+
+        $stock = $row['cantidad_disponible'];
+        $stock_minimo = 5;
+
+        $valor_producto = $stock * $row['precio'];
+
+        $total_productos++;
+        $valor_total += $valor_producto;
+
+        if ($stock < $stock_minimo) {
+            $stock_bajo++;
+        }
+    }
+
+    // 🔥 Guardar reporte
+    if (!isset($_GET['guardado'])) {
+
+// if (!isset($_SESSION['id_usuario'])) {
+//     die("Usuario no autenticado");
+// }
+
+$usuario_id = 3; // prueba rápida
+
+        $stmtInsert = $pdo->prepare("
+            INSERT INTO reportes 
+            (tipo_reporte, fecha_inicio, fecha_fin, total_productos, productos_stock_bajo, valor_total, generado_por)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        ");
+
+        $stmtInsert->execute([
+            $tipo,
+            $fecha_inicio,
+            $fecha_fin,
+            $total_productos,
+            $stock_bajo,
+            $valor_total,
+            $usuario_id
+        ]);
+
+        header("Location: reports.php?guardado=1&fecha_inicio=$fecha_inicio&fecha_fin=$fecha_fin");
+        exit();
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -70,16 +150,7 @@
 					<span class="lbl">Calendario</span>
 				</a>
 			</li>
-
-
-			<li class="red">
-				<a href="mail.php">
-					<i class="font-icon glyphicon glyphicon-send"></i>
-					<span class="lbl">Correo</span>
-				</a>
-			</li>
-
-
+			
 		</ul>
 	
 
@@ -121,38 +192,41 @@
 				  <div class="invoice-block">
 					<h5>Reporte generado por:</h5>
 					<div>Diego Erazo</div>
-					<div>Fecha de generación:<br>01 de mayo de 2025</div>
+					<div>Fecha de generación:<br><?= date("d \d\e F \d\e Y") ?></div>
 				  </div>
 				</div>
-				<div class="col-lg-6 clearfix invoice-info">
+				<div class="col-lg-6 clearfix invoice-info">		
 				  <div class="text-lg-right">
-					<h5>ID Reporte: INV-001</h5>
-					<div>Fecha desde: 
-						<div class="form-group">
-							<div class="input-group date datetimepicker-1">
-								<input type="text" class="form-control">
-							<span class="input-group-addon">
-								<i class="font-icon font-icon-calend"></i>
-							</span>
-							
-							</div>
-						</div>
-					</div>
-					<div>Hasta: <div class="form-group">
-						<div class="input-group date datetimepicker-1">
-							<input type="text" class="form-control">
-						<span class="input-group-addon">
-							<i class="font-icon font-icon-calend"></i>
-						</span>
-						</div>
-					</div></div>
-				  </div>
+					<h5>ID Reporte: INV-<?= rand(100,999) ?></h5>
+
+<form method="GET" class="mb-3">
+    <div class="row">
+        <div class="col-md-4">
+            <label>Fecha inicio</label>
+            <input type="date" name="fecha_inicio" class="form-control" required>
+        </div>
+
+        <div class="col-md-4">
+            <label>Fecha fin</label>
+            <input type="date" name="fecha_fin" class="form-control" required>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">
+                Generar Reporte
+            </button>
+        </div>
+    </div>
+</form>
+				</div>
 	  
-				  <div class="payment-details">
+				<div class="payment-details">
 					<strong>Resumen</strong>
-					<div>Total de productos: <b>125</b></div>
-					<div>Productos con stock bajo: <b>18</b></div>
-					<div>Valor total del inventario: <b>$45.300.000</b></div>
+						<div>Total de productos: <b><?= $total_productos ?></b></div>
+						<div>Productos con stock bajo: <b><?= $stock_bajo ?></b></div>
+						<div>Valor total del inventario: 
+    						<b>$<?= number_format($valor_total, 0, ',', '.') ?></b>
+						</div>
 				  </div>
 				</div>
 			  </div>
@@ -172,24 +246,43 @@
 					  </tr>
 					</thead>
 					<tbody>
-					  <tr>
-						<td>1</td>
-						<td>Mouse Óptico</td>
-						<td>Periféricos</td>
-						<td>15</td>
-						<td>10</td>
-						<td>$35.000</td>
-						<td>$525.000</td>
-					  </tr>
-					  <tr style="background-color: #ffe6e6;">
-						<td>2</td>
-						<td>Teclado Mecánico</td>
-						<td>Periféricos</td>
-						<td>4</td>
-						<td>10</td>
-						<td>$120.000</td>
-						<td>$480.000</td>
-					  </tr>
+					 <tbody>
+<?php if (!empty($productos)): ?>
+    <?php $i = 1; ?>
+<?php foreach ($productos as $index => $producto): ?>
+
+<tr>
+    <td><?= $index + 1 ?></td>
+    
+    <td><?= $producto['nombre'] ?></td>
+    
+    <td><?= $producto['nombre_categoria'] ?></td>
+    
+    <td><?= $producto['cantidad_disponible'] ?></td>
+    
+    <td>5</td> <!-- puedes dejar fijo o luego hacerlo dinámico -->
+    
+    <td>$<?= number_format($producto['precio'], 0, ',', '.') ?></td>
+    
+    <td>
+        $<?= number_format(
+            $producto['cantidad_disponible'] * $producto['precio'], 
+            0, ',', '.'
+        ) ?>
+    </td>
+
+</tr>
+
+<?php endforeach; ?>
+<?php else: ?>
+    <tr>
+        <td colspan="7" class="text-center">
+            No hay datos para mostrar
+        </td>
+    </tr>
+<?php endif; ?>
+</tbody>
+					
 					  <!-- Puedes añadir más filas dinámicamente -->
 					</tbody>
 				  </table>
@@ -199,16 +292,42 @@
 			  <div class="row">
 				<div class="col-lg-7 terms-and-conditions">
 				  <strong>Observaciones</strong>
-				  Este reporte refleja los productos disponibles en inventario. Las filas en rojo indican stock por debajo del mínimo requerido. Se recomienda revisar para reposición.
+
+<?php if ($stock_bajo > 0): ?>
+    Este reporte refleja los productos disponibles en inventario. 
+    <span style="color:red;">
+        Hay <?= $stock_bajo ?> productos con stock bajo.
+    </span>
+    Se recomienda realizar reposición.
+<?php else: ?>
+    El inventario se encuentra en buen estado. No hay productos con stock bajo.
+<?php endif; ?>
+
 				</div>
 				<div class="col-lg-5 clearfix">
 				  <div class="total-amount">
-					<div>Subtotal del inventario: <b>$45.300.000</b></div>
-					<div>Productos con stock bajo: <b>18</b></div>
-					<div>Valor estimado de reposición: <span class="colored">$5.000.000</span></div>
+<div>Subtotal del inventario: 
+    <b>$<?= number_format($valor_total, 0, ',', '.') ?></b>
+</div>
+
+<div>Productos con stock bajo: 
+    <b><?= $stock_bajo ?></b>
+</div>
+
+<div>Valor estimado de reposición: 
+    <span class="colored">
+        $<?= number_format($stock_bajo * 500000, 0, ',', '.') ?>
+    </span>
+</div>
 					<div class="actions">
-					  <button class="btn btn-rounded btn-inline">Exportar PDF</button>
-					  <button class="btn btn-rounded btn-inline exl">Exportar EXCEL</button>
+					  <a href="exportar_pdf.php?fecha_inicio=<?= $fecha_inicio ?>&fecha_fin=<?= $fecha_fin ?>" 
+   class="btn btn-rounded btn-inline">
+   Exportar PDF
+</a>
+<a href="exportar_excel.php?fecha_inicio=<?= $fecha_inicio ?>&fecha_fin=<?= $fecha_fin ?>" 
+   class="btn btn-rounded btn-inline exl">
+   Exportar EXCEL
+</a>
 					</div>
 				  </div>
 				</div>

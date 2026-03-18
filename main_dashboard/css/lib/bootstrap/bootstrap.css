@@ -4696,7 +4696,7 @@ base::-moz-progress-bar,
 @media screen and (min-width: 0\0) {
   .progress-animated .progress-bar-striped {
     -webkit-animation: progress-bar-stripes 2s linear infinite;
-         -o-animation: progress-bar-stripes 2s linear infinite;
+    -o-animation: progress-bar-stripes 2s linear infinite;
             animation: progress-bar-stripes 2s linear infinite;
   }
 }
@@ -5199,6 +5199,10 @@ button.close {
 .modal-body {
   position: relative;
   padding: 15px;
+}
+
+.modal-body{
+  background-color: #fff;
 }
 
 .modal-footer {

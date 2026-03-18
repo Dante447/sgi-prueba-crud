@@ -74,7 +74,7 @@
 	                        </button>
 	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
 	                            <a class="dropdown-item" href="settings.php"><span class="font-icon glyphicon glyphicon-cog"></span>Configuración</a>
-	                            <a class="dropdown-item" href="help.html"><span class="font-icon glyphicon glyphicon-question-sign"></span>Help</a>
+	                            <a class="dropdown-item" href="help.php"><span class="font-icon glyphicon glyphicon-question-sign"></span>Help</a>
 	                            <div class="dropdown-divider"></div>
 	                            <a class="dropdown-item" href="../pages_login/pages-login.html"><span class="font-icon glyphicon glyphicon-log-out"></span>Salir</a>
 	                        </div>

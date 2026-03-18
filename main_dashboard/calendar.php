@@ -73,14 +73,6 @@
 			</li>
 
 
-			<li class="red">
-				<a href="mail.php">
-					<i class="font-icon glyphicon glyphicon-send"></i>
-					<span class="lbl">Correo</span>
-				</a>
-			</li>
-
-
 		</ul>
 	
 
